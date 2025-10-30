@@ -27,7 +27,7 @@ db.restaurants.find({"grades.score": {"$gt": 90}});
 // 9. Show restaurants with a score higher than 80 but lower than 100
 db.restaurants.find({"grades.score": {"$gt": 80, "$lt": 100}});
 
-// 10. Show restaurants with a latitude lower than -95.754168
+// 10. Show restaurants with latitude lower than -95.754168
 db.restaurants.find({"address.coord.1": {"$lt": -95.754168 }});
 
 // 11. Show not 'American' restaurants with a score higher than 70 and a longitude lower than -65.754168
@@ -45,10 +45,10 @@ db.restaurants.find({"name": /^Wil/}, {"_id": 0, "restaurant_id": 1, "name": 1, 
 // 15. Show restaurant_id, name, borough and cuisine of all restaurants whose name ends with "ces"
 db.restaurants.find({"name": /ces$/}, {"_id": 0, "restaurant_id": 1, "name": 1, "borough": 1, "cuisine": 1});
 
-// 16. Show restaurant_id, name, borough and cuisine of all restaurants whose name contains with "Reg"
+// 16. Show restaurant_id, name, borough and cuisine of all restaurants whose name contains "Reg"
 db.restaurants.find({"name": /Reg/}, {"_id": 0, "restaurant_id": 1, "name": 1, "borough": 1, "cuisine": 1});
 
-// 17. Show 'American'/'Chinese' restaurans located in Bronx
+// 17. Show 'American'/'Chinese' restaurants located in Bronx
 db.restaurants.find({"borough": "Bronx", "cuisine": {"$in": ["American", "Chinese"]}});
 
 // 18. Show restaurant_id, name, borough and cuisine of all restaurants located in Staten Island, Queens, Bronx or Brooklyn
@@ -66,10 +66,10 @@ db.restaurants.find({"$or": [{"$and": [{"cuisine": "Fish"}, {"cuisine": {"$nin":
 // 22. Show restaurant_id, name and grades of all restaurants with a grade of 'A' and a score of 11 in ISODate '2014-08-11T00:00:00Z'
 db.restaurants.find({"grades": {"$elemMatch": {"grade": "A", "score": 11, "date": {"$eq": ISODate("2014-08-11T00:00:00Z")}}}}, {"_id": 0, "restaurant_id": 1, "name": 1, "grades": 1});
 
-// 23. Show restaurant_id, name and grades of all restaurants whose second a grade's has a grade of 'A' and a score of 11 in ISODate '2014-08-11T00:00:00Z'
+// 23. Show restaurant_id, name and grades of all restaurants whose second grade has a grade of 'A' and a score of 9 in ISODate '2014-08-11T00:00:00Z'
 db.restaurants.find({"grades.1.grade": "A", "grades.1.score": 9, "grades.1.date": ISODate("2014-08-11T00:00:00Z")}, {"_id": 0, "restaurant_id": 1, "name": 1, "borough": 1, "grades": 1});
 
-// 24. Show restaurant_id, name, address and geographic location of all restaurants with latitud higher than 42 and not higher than 52
+// 24. Show restaurant_id, name, address and geographic location of all restaurants with latitude higher than 42 and not higher than 52
 db.restaurants.find({"address.coord.1": {"$gt": 42, "$lte": 52}}, {"_id": 0, "restaurant_id": 1, "name": 1, "address": 1, "address.coord": 1});
 
 // 25. Show all restaurants sorted by name in ascending order
@@ -78,7 +78,7 @@ db.restaurants.find().sort({"name": 1});
 // 26. Show all restaurants sorted by name in descending order
 db.restaurants.find().sort({"name": -1});
 
-// 27. Show all restaurants sorted by cuisin in ascending order and then by borough in descending order
+// 27. Show all restaurants sorted by cuisine in ascending order and then by borough in descending order
 db.restaurants.find().sort({"cuisine": 1, "borough": -1});
 
 // 28. Show all restaurants whose address has no street
@@ -90,8 +90,8 @@ db.restaurants.find({"address.coord": {"$type": "double"}});
 // 30. Show restaurant_id, name and grades of all restaurants whose score can be divided by 7
 db.restaurants.find({"grades.score": {"$mod": [7, 0] }}, {"_id": 0, "restaurant_id": 1, "name": 1, "grades": 1});
 
-// 31. Show name, borough, longitude, latitude and cuising of all restaurants whose name contains with "mon"
+// 31. Show name, borough, longitude, latitude and cuisine of all restaurants whose name contains "mon"
 db.restaurants.find({"name": /mon/}, {"_id": 0, "name": 1, "borough": 1, "address.coord": 1, "cuisine": 1});
 
-// 32. Show name, borough, longitude, latitude and cuising of all restaurants whose name starts with "Mad"
+// 32. Show name, borough, longitude, latitude and cuisine of all restaurants whose name starts with "Mad"
 db.restaurants.find({"name": /^Mad/}, {"_id": 0, "name": 1, "borough": 1, "address.coord": 1, "cuisine": 1});
