@@ -16,10 +16,10 @@ db.restaurants.find({}, {"_id": 0, "restaurant_id": 1, "name": 1, "borough": 1, 
 db.restaurants.find({"borough": "Bronx"});
 
 // 6. Show first 5 restaurants in Bronx
-db.restaurants.find({"borough": "Bronx"}.limit(5));
+db.restaurants.find({"borough": "Bronx"}).limit(5);
 
 // 7. Show second 5 restaurants in Bronx
-db.restaurants.find({"grades.score": {"$gt": 90}});
+db.restaurants.find({"borough": "Bronx"}).skip(5).limit(5);
 
 // 8. Show restaurants with a score higher than 90
 db.restaurants.find({"grades.score": {"$gt": 90}});
