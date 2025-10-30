@@ -61,7 +61,7 @@ db.restaurants.find({"borough": {"$nin": ["Staten Island", "Queens", "Bronx", "B
 db.restaurants.find({"grades.score": {"$lte": 10}}, {"_id": 0, "restaurant_id": 1, "name": 1, "borough": 1, "cuisine": 1});
 
 // 21. Show restaurant_id, name, borough and cuisine of not 'American'/'Chinese' restaurants that cook fish or restaurants whose name starts with "Wil"
-db.restaurants.find({"$or": [{"cuisine": {"$nin": ["American", "Chinese"], "$eq": "Fish"}}, {"name": /^Wil/ }]}, {"_id": 0, "restaurant_id": 1, "name": 1, "cuisine": 1});
+db.restaurants.find({"$or": [{"$and": [{"cuisine": "Fish"}, {"cuisine": {"$nin": ["American", "Chinese"]}}]}, { "name": { "$regex": "^Wil" } } ] }, {"_id": 0, "restaurant_id": 1, "name": 1, "cuisine": 1});
 
 // 22. Show restaurant_id, name and grades of all restaurants with a grade of 'A' and a score of 11 in ISODate '2014-08-11T00:00:00Z'
 db.restaurants.find({"grades": {"$elemMatch": {"grade": "A", "score": 11, "date": {"$eq": ISODate("2014-08-11T00:00:00Z")}}}}, {"_id": 0, "restaurant_id": 1, "name": 1, "grades": 1});
